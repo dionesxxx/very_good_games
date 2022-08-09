@@ -44,6 +44,7 @@ class Game extends Equatable {
   /// The background image of the game
   ///
   /// Cannot be empty
+  @JsonKey(name: 'background_image')
   final String backgroundImage;
 
   /// The rating of the game

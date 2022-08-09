@@ -10,28 +10,26 @@ void main() {
   group('VeryGoodGamesRepository', () {
     late VeryGoodGamesApi api;
 
-    final games = [
-      Game(
-        id: 1,
-        name: 'God of War',
-        released: '-',
-        backgroundImage: 'https://',
-        rating: 4.98,
-      ),
-      Game(
-        id: 2,
-        name: 'Horizon Zero Down',
-        released: '-',
-        backgroundImage: 'https://',
-        rating: 4.92,
-      ),
-    ];
+    final gamesResponse = GameResponse(
+      count: 100,
+      games: const [
+        Game(
+          id: 2,
+          name: 'Horizon Zero Down',
+          released: '-',
+          backgroundImage: 'https://',
+          rating: 4.92,
+        )
+      ],
+      next: '',
+      previous: '',
+    );
 
     setUp(() {
       api = MockVeryGoodApi();
       when(
         () => api.getGames(),
-      ).thenAnswer((_) => Stream.value(games));
+      ).thenAnswer((_) async => gamesResponse);
     });
 
     VeryGoodGamesRepository createSubject() =>
@@ -55,10 +53,10 @@ void main() {
         verify(() => api.getGames()).called(1);
       });
 
-      test('returns stream of current list games', () {
+      test('returns GameResponse of current list games', () {
         expect(
           createSubject().getGames(),
-          emits(games),
+          emits(gamesResponse),
         );
       });
     });

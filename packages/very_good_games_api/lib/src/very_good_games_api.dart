@@ -7,6 +7,6 @@ abstract class VeryGoodGamesApi {
   /// {@macro very_good_games_api}
   const VeryGoodGamesApi();
 
-  /// Provides a [Stream] of all games.
-  Stream<List<Game>> getGames();
+  /// Provides a [Future<GameResponse>] of all games.
+  Future<GameResponse> getGames();
 }

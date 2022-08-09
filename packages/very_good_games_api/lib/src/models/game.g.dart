@@ -10,7 +10,7 @@ Game _$GameFromJson(Map<String, dynamic> json) => Game(
       id: json['id'] as int,
       name: json['name'] as String,
       released: json['released'] as String,
-      backgroundImage: json['backgroundImage'] as String,
+      backgroundImage: json['background_image'] as String,
       rating: (json['rating'] as num).toDouble(),
     );
 
@@ -18,7 +18,7 @@ Map<String, dynamic> _$GameToJson(Game instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'released': instance.released,
-      'backgroundImage': instance.backgroundImage,
+      'background_image': instance.backgroundImage,
       'rating': instance.rating,
     };
 

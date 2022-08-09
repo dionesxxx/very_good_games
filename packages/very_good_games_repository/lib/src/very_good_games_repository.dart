@@ -11,6 +11,6 @@ class VeryGoodGamesRepository {
 
   final VeryGoodGamesApi _veryGoodGamesApi;
 
-  ///Provide a [Stream] of all games
-  Stream<List<Game>> getGames() => _veryGoodGamesApi.getGames();
+  ///Provide a [GameResponse] of all games
+  Future<GameResponse> getGames() => _veryGoodGamesApi.getGames();
 }
