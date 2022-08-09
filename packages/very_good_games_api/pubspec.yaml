@@ -15,4 +15,3 @@ dev_dependencies:
 dependencies:
   equatable: ^2.0.3
   json_annotation: ^4.6.0
-  meta: ^1.8.0
