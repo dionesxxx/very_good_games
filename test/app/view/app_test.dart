@@ -7,13 +7,13 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:very_good_games/app/app.dart';
-import 'package:very_good_games/counter/counter.dart';
+import 'package:very_good_games/games/view/games_page.dart';
 
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
       await tester.pumpWidget(const App());
-      expect(find.byType(CounterPage), findsOneWidget);
+      expect(find.byType(GamesPage), findsOneWidget);
     });
   });
 }
