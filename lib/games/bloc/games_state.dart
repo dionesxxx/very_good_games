@@ -1,24 +1,24 @@
-part of 'game_bloc.dart';
+part of 'games_bloc.dart';
 
-enum GameStatus { initial, success, failure }
+enum GamesStatus { initial, success, failure }
 
-class GameState extends Equatable {
-  const GameState({
-    this.status = GameStatus.initial,
+class GamesState extends Equatable {
+  const GamesState({
+    this.status = GamesStatus.initial,
     this.games = const <Game>[],
     this.hasReachedMax = false,
   });
 
-  final GameStatus status;
+  final GamesStatus status;
   final List<Game> games;
   final bool hasReachedMax;
 
-  GameState copyWith({
-    GameStatus? status,
+  GamesState copyWith({
+    GamesStatus? status,
     List<Game>? games,
     bool? hasReachedMax,
   }) {
-    return GameState(
+    return GamesState(
       status: status ?? this.status,
       games: games ?? this.games,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
