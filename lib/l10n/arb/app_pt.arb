@@ -1,7 +1,12 @@
 {
-    "@@locale": "es",
+    "@@locale": "pt",
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
+    },
+
+    "gamesAppBarTitle": "Games",
+    "@gamesAppBarTitle": {
+        "description": "Texto exibido na AppBar da tela de Games"
     }
 }
