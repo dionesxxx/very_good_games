@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:very_good_games/games/bloc/game_bloc.dart';
+import 'package:very_good_games/games/bloc/games_bloc.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
 import 'package:very_good_games_repository/very_good_games_repository.dart';
 import 'package:very_good_remote_games_api/very_good_remote_games_api.dart';
@@ -38,7 +38,7 @@ void main() {
       repository = MockVeryGoodGamesRepository();
     });
 
-    GameBloc createSubject() => GameBloc(veryGoodGamesRepository: repository);
+    GamesBloc createSubject() => GamesBloc(veryGoodGamesRepository: repository);
 
     group('constructor', () {
       test('works properly', () {
@@ -47,46 +47,46 @@ void main() {
     });
 
     group('GameFetched', () {
-      blocTest<GameBloc, GameState>(
+      blocTest<GamesBloc, GamesState>(
         'emits nothing when posts has reached maximum amount',
         build: createSubject,
-        seed: () => const GameState(hasReachedMax: true),
-        act: (bloc) => bloc.add(GameFetched()),
-        expect: () => const <GameState>[],
+        seed: () => const GamesState(hasReachedMax: true),
+        act: (bloc) => bloc.add(GamesFetched()),
+        expect: () => const <GamesState>[],
       );
 
-      blocTest<GameBloc, GameState>(
+      blocTest<GamesBloc, GamesState>(
         'emits successful status when http fetches initial games',
         setUp: () {
           when(() => repository.getGames())
               .thenAnswer((_) async => gamesResponse);
         },
         build: createSubject,
-        act: (bloc) => bloc.add(GameFetched()),
-        expect: () => <GameState>[
-          GameState(
-            status: GameStatus.success,
+        act: (bloc) => bloc.add(GamesFetched()),
+        expect: () => <GamesState>[
+          GamesState(
+            status: GamesStatus.success,
             games: gamesResponse.games,
           )
         ],
       );
 
-      blocTest<GameBloc, GameState>(
+      blocTest<GamesBloc, GamesState>(
         'emits failure status when repository fetches game and throw exception',
         setUp: () {
           when(() => repository.getGames())
               .thenThrow((_) async => GamesRequestFailure());
         },
         build: createSubject,
-        act: (bloc) => bloc.add(GameFetched()),
-        expect: () => <GameState>[
-          const GameState(
-            status: GameStatus.failure,
+        act: (bloc) => bloc.add(GamesFetched()),
+        expect: () => <GamesState>[
+          const GamesState(
+            status: GamesStatus.failure,
           )
         ],
       );
 
-      blocTest<GameBloc, GameState>(
+      blocTest<GamesBloc, GamesState>(
         'emits successful status and reaches max games when '
         '0 additional games are fetched',
         setUp: () {
@@ -95,21 +95,21 @@ void main() {
           );
         },
         build: createSubject,
-        seed: () => GameState(
-          status: GameStatus.success,
+        seed: () => GamesState(
+          status: GamesStatus.success,
           games: gamesResponseEmpty.games,
         ),
-        act: (bloc) => bloc.add(GameFetched()),
-        expect: () => <GameState>[
-          GameState(
-            status: GameStatus.success,
+        act: (bloc) => bloc.add(GamesFetched()),
+        expect: () => <GamesState>[
+          GamesState(
+            status: GamesStatus.success,
             games: gamesResponseEmpty.games,
             hasReachedMax: true,
           )
         ],
       );
 
-      blocTest<GameBloc, GameState>(
+      blocTest<GamesBloc, GamesState>(
         'emits successful status and does not reach max games '
         'when additional games are fetched',
         setUp: () {
@@ -118,14 +118,14 @@ void main() {
           );
         },
         build: createSubject,
-        seed: () => GameState(
-          status: GameStatus.success,
+        seed: () => GamesState(
+          status: GamesStatus.success,
           games: gamesResponse.games,
         ),
-        act: (bloc) => bloc.add(GameFetched()),
-        expect: () => <GameState>[
-          GameState(
-            status: GameStatus.success,
+        act: (bloc) => bloc.add(GamesFetched()),
+        expect: () => <GamesState>[
+          GamesState(
+            status: GamesStatus.success,
             games: [...gamesResponse.games, ...gamesResponse.games],
           )
         ],
