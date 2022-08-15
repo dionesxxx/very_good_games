@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:very_good_games_api/very_good_games_api.dart';
@@ -18,15 +19,38 @@ class VeryGoodRemoteGamesApi extends VeryGoodGamesApi {
   VeryGoodRemoteGamesApi({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
-  static const _baseUrl = 'www.api.rawg.io';
+  static const _baseUrl = 'api.rawg.io';
   final http.Client _httpClient;
 
   @override
   Future<GameResponse> getGames() async {
     final gamesRequest = Uri.https(
       _baseUrl,
-      '/api/games?key=${Constants.apiKey}',
+      '/api/games',
+      {'key': Constants.apiKey, 'page_size': '20'},
     );
+
+    final gamesResponse = await _httpClient.get(gamesRequest);
+
+    if (gamesResponse.statusCode != 200) {
+      throw GamesRequestFailure();
+    }
+
+    final gameMap = jsonDecode(gamesResponse.body) as Map<String, dynamic>;
+
+    if (gameMap.isEmpty) {
+      throw GamesNotFoundFailure();
+    }
+
+    final game = GameResponse.fromJson(gameMap);
+
+    return game;
+  }
+
+  @override
+  Future<GameResponse> getMoreGames(String nextPage) async {
+    final gamesRequest = Uri.parse(nextPage);
+    log(gamesRequest.toString());
     final gamesResponse = await _httpClient.get(gamesRequest);
 
     if (gamesResponse.statusCode != 200) {

@@ -13,4 +13,8 @@ class VeryGoodGamesRepository {
 
   ///Provide a [GameResponse] of all games
   Future<GameResponse> getGames() => _veryGoodGamesApi.getGames();
+
+  ///Provide a nextPage for [GameResponse] of all games
+  Future<GameResponse> getMoreGames(String nextPage) =>
+      _veryGoodGamesApi.getMoreGames(nextPage);
 }

@@ -9,4 +9,7 @@ abstract class VeryGoodGamesApi {
 
   /// Provides a [Future<GameResponse>] of all games.
   Future<GameResponse> getGames();
+
+  /// Provides a [Future<GameResponse>] for nextPage of all games.
+  Future<GameResponse> getMoreGames(String nextPage);
 }

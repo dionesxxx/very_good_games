@@ -30,6 +30,9 @@ void main() {
       when(
         () => api.getGames(),
       ).thenAnswer((_) async => gamesResponse);
+      when(
+        () => api.getMoreGames(any()),
+      ).thenAnswer((_) async => gamesResponse);
     });
 
     VeryGoodGamesRepository createSubject() =>
@@ -42,22 +45,28 @@ void main() {
     });
 
     group('getGames', () {
-      test('makes correct api request', () {
+      test('makes correct api request', () async {
         final subject = createSubject();
 
         expect(
-          subject.getGames(),
-          isNot(throwsA(anything)),
+          await subject.getGames(),
+          gamesResponse,
         );
 
         verify(() => api.getGames()).called(1);
       });
+    });
 
-      test('returns GameResponse of current list games', () {
+    group('getMoreGames', () {
+      test('makes correct api request', () async {
+        final subject = createSubject();
+
         expect(
-          createSubject().getGames(),
-          emits(gamesResponse),
+          await subject.getMoreGames(gamesResponse.next!),
+          gamesResponse,
         );
+
+        verify(() => api.getMoreGames(gamesResponse.next!)).called(1);
       });
     });
   });
