@@ -6,12 +6,28 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:very_good_games/games/view/games_page.dart';
 import 'package:very_good_games/l10n/l10n.dart';
+import 'package:very_good_games_repository/very_good_games_repository.dart';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  const App({super.key, required this.veryGoodGamesRepository});
+
+  final VeryGoodGamesRepository veryGoodGamesRepository;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: veryGoodGamesRepository,
+      child: const AppView(),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {

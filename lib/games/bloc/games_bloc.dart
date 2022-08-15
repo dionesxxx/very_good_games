@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
@@ -12,7 +15,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   GamesBloc({required VeryGoodGamesRepository veryGoodGamesRepository})
       : _veryGoodGamesRepository = veryGoodGamesRepository,
         super(const GamesState()) {
-    on<GamesFetched>(_onGameFetched);
+    on<GamesFetched>(_onGameFetched, transformer: droppable());
   }
 
   final VeryGoodGamesRepository _veryGoodGamesRepository;
@@ -30,12 +33,14 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
           state.copyWith(
             status: GamesStatus.success,
             games: gamesResponse.games,
+            nextPage: gamesResponse.next,
             hasReachedMax: false,
           ),
         );
       }
 
-      final gamesResponse = await _veryGoodGamesRepository.getGames();
+      final gamesResponse =
+          await _veryGoodGamesRepository.getMoreGames(state.nextPage);
       gamesResponse.games.isEmpty
           ? emit(state.copyWith(hasReachedMax: true))
           : emit(
@@ -45,7 +50,8 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
                 hasReachedMax: false,
               ),
             );
-    } catch (_) {
+    } catch (e) {
+      log(e.toString());
       emit(state.copyWith(status: GamesStatus.failure));
     }
   }

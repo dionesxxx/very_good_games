@@ -5,9 +5,17 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:very_good_games/app/app.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:very_good_games/bootstrap.dart';
+import 'package:very_good_remote_games_api/very_good_remote_games_api.dart';
 
 void main() {
-  bootstrap(() => const App());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final veryGoodGamesApi = VeryGoodRemoteGamesApi(
+    httpClient: http.Client(),
+  );
+
+  bootstrap(veryGoodGamesApi: veryGoodGamesApi);
 }
