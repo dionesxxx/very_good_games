@@ -8,7 +8,8 @@ environment:
   flutter: 3.0.4
 
 dependencies:
-  bloc: ^8.0.3
+  bloc: ^8.1.0
+  bloc_concurrency: ^0.2.0
   equatable: ^2.0.3
   flutter:
     sdk: flutter
@@ -22,8 +23,6 @@ dependencies:
     path: packages/very_good_games_repository
   very_good_remote_games_api:
     path: packages/very_good_remote_games_api
-  
-
 
 dev_dependencies:
   bloc_test: ^9.0.3
