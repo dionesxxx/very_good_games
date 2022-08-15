@@ -8,5 +8,10 @@
     "gamesAppBarTitle": "Games",
     "@gamesAppBarTitle": {
         "description": "Texto exibido na AppBar da tela de Games"
+    },
+
+    "failedFetchGames": "Falha ao carregar games",
+    "@failedFetchGames": {
+        "description": "Texto de falha exibido ao tentar carregar games"
     }
 }
