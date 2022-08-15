@@ -46,7 +46,7 @@ void main() {
       });
     });
 
-    group('GameFetched', () {
+    group('GamesFetched', () {
       blocTest<GamesBloc, GamesState>(
         'emits nothing when posts has reached maximum amount',
         build: createSubject,
@@ -90,7 +90,7 @@ void main() {
         'emits successful status and reaches max games when '
         '0 additional games are fetched',
         setUp: () {
-          when(() => repository.getGames()).thenAnswer(
+          when(() => repository.getMoreGames(any())).thenAnswer(
             (_) async => gamesResponseEmpty,
           );
         },
@@ -113,7 +113,7 @@ void main() {
         'emits successful status and does not reach max games '
         'when additional games are fetched',
         setUp: () {
-          when(() => repository.getGames()).thenAnswer(
+          when(() => repository.getMoreGames(any())).thenAnswer(
             (_) async => gamesResponse,
           );
         },
