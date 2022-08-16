@@ -139,5 +139,48 @@ void main() {
         findsNWidgets(gameResponse.games.length),
       );
     });
+
+    testWidgets('fetches more posts when scrolled to the bottom',
+        (tester) async {
+      when(() => gamesBloc.state).thenReturn(
+        GamesState(
+          status: GamesStatus.success,
+          games: List.generate(
+            12,
+            (i) => Game(
+              id: i,
+              name: 'Game name',
+              released: '-',
+              backgroundImage: '',
+              rating: 4.44,
+            ),
+          ),
+        ),
+      );
+
+      await tester.pumpApp(
+        buildSubject(),
+        veryGoodGamesRepository: veryGoodGamesRepository,
+      );
+
+      await tester.drag(find.byType(GamesView), const Offset(0, -500));
+      verify(() => gamesBloc.add(GamesFetched())).called(1);
+    });
+
+    testWidgets('does not render bottom loader when post max is reached',
+        (tester) async {
+      when(() => gamesBloc.state).thenReturn(
+        GamesState(
+          status: GamesStatus.success,
+          games: gameResponse.games,
+          hasReachedMax: true,
+        ),
+      );
+      await tester.pumpApp(
+        buildSubject(),
+        veryGoodGamesRepository: veryGoodGamesRepository,
+      );
+      expect(find.byType(BottomLoader), findsNothing);
+    });
   });
 }
