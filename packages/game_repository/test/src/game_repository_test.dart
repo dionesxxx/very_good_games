@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_games_repository/very_good_games_repository.dart';
 
 class MockVeryGoodApi extends Mock implements VeryGoodGamesApi {}
 
 void main() {
-  group('VeryGoodGamesRepository', () {
+  group('GameRepository', () {
     late VeryGoodGamesApi api;
 
     final gamesResponse = GameResponse(
@@ -35,8 +35,7 @@ void main() {
       ).thenAnswer((_) async => gamesResponse);
     });
 
-    VeryGoodGamesRepository createSubject() =>
-        VeryGoodGamesRepository(veryGoodGamesApi: api);
+    GameRepository createSubject() => GameRepository(veryGoodGamesApi: api);
 
     group('constructor', () {
       test('works properly', () {

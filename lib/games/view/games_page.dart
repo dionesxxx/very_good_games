@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_repository/game_repository.dart';
 import 'package:very_good_games/games/games.dart';
 import 'package:very_good_games/l10n/l10n.dart';
-import 'package:very_good_games_repository/very_good_games_repository.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({super.key});
@@ -11,7 +11,7 @@ class GamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => GamesBloc(
-        veryGoodGamesRepository: context.read<VeryGoodGamesRepository>(),
+        gameRepository: context.read<GameRepository>(),
       )..add(GamesFetched()),
       child: const GamesView(),
     );

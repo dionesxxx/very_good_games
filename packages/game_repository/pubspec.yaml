@@ -1,4 +1,4 @@
-name: very_good_games_repository
+name: game_repository
 description: The interface and models for an API providing access to games
 version: 1.0.0+1
 publish_to: none

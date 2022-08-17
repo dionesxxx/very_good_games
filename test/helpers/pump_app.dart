@@ -9,21 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:very_good_games/l10n/l10n.dart';
-import 'package:very_good_games_repository/very_good_games_repository.dart';
 
-class MockVeryGoodGamesRepository extends Mock
-    implements VeryGoodGamesRepository {}
+class MockGameRepository extends Mock implements GameRepository {}
 
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(
     Widget widget, {
-    VeryGoodGamesRepository? veryGoodGamesRepository,
+    GameRepository? gameRepository,
   }) {
     return pumpWidget(
       RepositoryProvider.value(
-        value: veryGoodGamesRepository ?? MockVeryGoodGamesRepository(),
+        value: gameRepository ?? MockGameRepository(),
         child: MaterialApp(
           localizationsDelegates: const [
             AppLocalizations.delegate,

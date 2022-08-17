@@ -1,11 +1,11 @@
 import 'package:very_good_games_api/very_good_games_api.dart';
 
-/// {@template very_good_games_repository}
-/// The interface and models for an API providing access to games
+/// {@template game_repository}
+/// The interface and models for an API providing access to game
 /// {@endtemplate}
-class VeryGoodGamesRepository {
-  /// {@macro very_good_games_repository}
-  const VeryGoodGamesRepository({
+class GameRepository {
+  /// {@macro game_repository}
+  const GameRepository({
     required VeryGoodGamesApi veryGoodGamesApi,
   }) : _veryGoodGamesApi = veryGoodGamesApi;
 

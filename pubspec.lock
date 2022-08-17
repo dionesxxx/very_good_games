@@ -163,6 +163,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  game_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/game_repository"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   glob:
     dependency: transitive
     description:
@@ -452,13 +459,6 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/very_good_games_api"
-      relative: true
-    source: path
-    version: "1.0.0+1"
-  very_good_games_repository:
-    dependency: "direct main"
-    description:
-      path: "packages/very_good_games_repository"
       relative: true
     source: path
     version: "1.0.0+1"

@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:very_good_games/games/bloc/games_bloc.dart';
 import 'package:very_good_games/games/view/view.dart';
 import 'package:very_good_games/games/widgets/widgets.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_games_repository/very_good_games_repository.dart';
 
 import '../../helpers/helpers.dart';
 
@@ -15,7 +15,7 @@ class MockGamesBloc extends MockBloc<GamesEvent, GamesState>
     implements GamesBloc {}
 
 void main() {
-  late VeryGoodGamesRepository veryGoodGamesRepository;
+  late GameRepository gameRepository;
   const gameResponse = GameResponse(
     count: 1,
     games: [
@@ -33,17 +33,17 @@ void main() {
 
   group('GamesPage', () {
     setUp(() {
-      veryGoodGamesRepository = MockVeryGoodGamesRepository();
-      when(() => veryGoodGamesRepository.getGames())
+      gameRepository = MockGameRepository();
+      when(() => gameRepository.getGames())
           .thenAnswer((_) async => gameResponse);
-      when(() => veryGoodGamesRepository.getMoreGames(any()))
+      when(() => gameRepository.getMoreGames(any()))
           .thenAnswer((_) async => gameResponse);
     });
 
     testWidgets('renders GamesView', (tester) async {
       await tester.pumpApp(
         const GamesPage(),
-        veryGoodGamesRepository: veryGoodGamesRepository,
+        gameRepository: gameRepository,
       );
     });
   });
@@ -51,10 +51,10 @@ void main() {
   group('GamesView', () {
     late GamesBloc gamesBloc;
     setUp(() {
-      veryGoodGamesRepository = MockVeryGoodGamesRepository();
-      when(() => veryGoodGamesRepository.getGames())
+      gameRepository = MockGameRepository();
+      when(() => gameRepository.getGames())
           .thenAnswer((_) async => gameResponse);
-      when(() => veryGoodGamesRepository.getMoreGames(any()))
+      when(() => gameRepository.getMoreGames(any()))
           .thenAnswer((_) async => gameResponse);
 
       gamesBloc = MockGamesBloc();
@@ -65,10 +65,10 @@ void main() {
         ),
       );
 
-      veryGoodGamesRepository = MockVeryGoodGamesRepository();
-      when(() => veryGoodGamesRepository.getGames())
+      gameRepository = MockGameRepository();
+      when(() => gameRepository.getGames())
           .thenAnswer((_) async => gameResponse);
-      when(() => veryGoodGamesRepository.getMoreGames(any()))
+      when(() => gameRepository.getMoreGames(any()))
           .thenAnswer((_) async => gameResponse);
     });
 
@@ -82,7 +82,7 @@ void main() {
     testWidgets('renders AppBar with title text', (tester) async {
       await tester.pumpApp(
         buildSubject(),
-        veryGoodGamesRepository: veryGoodGamesRepository,
+        gameRepository: gameRepository,
       );
 
       expect(find.byType(AppBar), findsOneWidget);
@@ -112,7 +112,7 @@ void main() {
 
         await tester.pumpApp(
           buildSubject(),
-          veryGoodGamesRepository: veryGoodGamesRepository,
+          gameRepository: gameRepository,
         );
         await tester.pumpAndSettle();
 
@@ -130,7 +130,7 @@ void main() {
     testWidgets('renders ListView with GamesListTiles', (tester) async {
       await tester.pumpApp(
         buildSubject(),
-        veryGoodGamesRepository: veryGoodGamesRepository,
+        gameRepository: gameRepository,
       );
 
       expect(find.byType(ListView), findsOneWidget);
@@ -160,7 +160,7 @@ void main() {
 
       await tester.pumpApp(
         buildSubject(),
-        veryGoodGamesRepository: veryGoodGamesRepository,
+        gameRepository: gameRepository,
       );
 
       await tester.drag(find.byType(GamesView), const Offset(0, -500));
@@ -178,7 +178,7 @@ void main() {
       );
       await tester.pumpApp(
         buildSubject(),
-        veryGoodGamesRepository: veryGoodGamesRepository,
+        gameRepository: gameRepository,
       );
       expect(find.byType(BottomLoader), findsNothing);
     });

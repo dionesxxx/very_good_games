@@ -1,17 +1,16 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:very_good_games/games/bloc/games_bloc.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_games_repository/very_good_games_repository.dart';
 import 'package:very_good_remote_games_api/very_good_remote_games_api.dart';
 
-class MockVeryGoodGamesRepository extends Mock
-    implements VeryGoodGamesRepository {}
+class MockGameRepository extends Mock implements GameRepository {}
 
 void main() {
   group('GameBloc', () {
-    late VeryGoodGamesRepository repository;
+    late GameRepository repository;
     const gamesResponse = GameResponse(
       count: 100,
       games: [
@@ -35,10 +34,10 @@ void main() {
     );
 
     setUp(() {
-      repository = MockVeryGoodGamesRepository();
+      repository = MockGameRepository();
     });
 
-    GamesBloc createSubject() => GamesBloc(veryGoodGamesRepository: repository);
+    GamesBloc createSubject() => GamesBloc(gameRepository: repository);
 
     group('constructor', () {
       test('works properly', () {
