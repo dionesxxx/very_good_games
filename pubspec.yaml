@@ -16,13 +16,13 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  game_api:
+    path: packages/game_api
   game_repository:
     path: packages/game_repository
   intl: ^0.17.0
   remote_game_api:
     path: packages/remote_game_api
-  very_good_games_api:
-    path: packages/very_good_games_api
 
 dev_dependencies:
   bloc_test: ^9.0.3

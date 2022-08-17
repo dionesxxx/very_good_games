@@ -1,11 +1,11 @@
-import 'package:very_good_games_api/src/models/models.dart';
+import 'package:game_api/src/models/models.dart';
 
-/// {@template very_good_games_api}
+/// {@template game_api}
 /// The interface and models for an API providing access to games
 /// {@endtemplate}
-abstract class VeryGoodGamesApi {
-  /// {@macro very_good_games_api}
-  const VeryGoodGamesApi();
+abstract class GameApi {
+  /// {@macro game_api}
+  const GameApi();
 
   /// Provides a [Future<GameResponse>] of all games.
   Future<GameResponse> getGames();

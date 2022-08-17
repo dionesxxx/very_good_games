@@ -7,10 +7,10 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
+  game_api:
+    path: ../game_api
   http: ^0.13.5
-  rxdart: ^0.27.5 
-  very_good_games_api:
-    path: ../very_good_games_api
+  rxdart: ^0.27.5
 
 dev_dependencies:
   mocktail: ^0.3.0

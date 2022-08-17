@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:game_api/game_api.dart';
 import 'package:http/http.dart' as http;
 import 'package:remote_game_api/constants/constants.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
 
 /// Exception thrown when getGames fails.
 class GamesRequestFailure implements Exception {}
@@ -14,7 +14,7 @@ class GamesNotFoundFailure implements Exception {}
 /// {@template very_good_remote_games_api}
 /// A Flutter implementation of the VeryGoodGamesApi that uses a remote http
 /// {@endtemplate}
-class RemoteGameApi extends VeryGoodGamesApi {
+class RemoteGameApi extends GameApi {
   /// {@macro very_good_remote_games_api}
   RemoteGameApi({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();

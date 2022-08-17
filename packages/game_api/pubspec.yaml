@@ -1,4 +1,4 @@
-name: very_good_games_api
+name: game_api
 description: The interface and models for an API providing access to games
 version: 1.0.0+1
 publish_to: none

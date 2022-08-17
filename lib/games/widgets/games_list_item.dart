@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
+import 'package:game_api/game_api.dart';
 
 class GamesListItem extends StatelessWidget {
   const GamesListItem({super.key, required this.game});

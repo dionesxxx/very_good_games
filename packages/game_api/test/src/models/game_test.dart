@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_redundant_argument_values
+import 'package:game_api/src/models/models.dart';
 import 'package:test/test.dart';
-import 'package:very_good_games_api/src/models/models.dart';
 
 void main() {
   group('Game', () {

@@ -7,15 +7,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:remote_game_api/remote_games_api.dart';
+import 'package:remote_game_api/remote_game_api.dart';
 import 'package:very_good_games/bootstrap.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final veryGoodGamesApi = RemoteGameApi(
+  final gameApi = RemoteGameApi(
     httpClient: http.Client(),
   );
 
-  bootstrap(veryGoodGamesApi: veryGoodGamesApi);
+  bootstrap(gameApi: gameApi);
 }

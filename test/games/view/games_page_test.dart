@@ -2,12 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:game_api/game_api.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:very_good_games/games/bloc/games_bloc.dart';
 import 'package:very_good_games/games/view/view.dart';
 import 'package:very_good_games/games/widgets/widgets.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
 
 import '../../helpers/helpers.dart';
 

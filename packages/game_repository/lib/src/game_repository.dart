@@ -1,4 +1,4 @@
-import 'package:very_good_games_api/very_good_games_api.dart';
+import 'package:game_api/game_api.dart';
 
 /// {@template game_repository}
 /// The interface and models for an API providing access to game
@@ -6,15 +6,15 @@ import 'package:very_good_games_api/very_good_games_api.dart';
 class GameRepository {
   /// {@macro game_repository}
   const GameRepository({
-    required VeryGoodGamesApi veryGoodGamesApi,
-  }) : _veryGoodGamesApi = veryGoodGamesApi;
+    required GameApi gameApi,
+  }) : _gameApi = gameApi;
 
-  final VeryGoodGamesApi _veryGoodGamesApi;
+  final GameApi _gameApi;
 
   ///Provide a [GameResponse] of all games
-  Future<GameResponse> getGames() => _veryGoodGamesApi.getGames();
+  Future<GameResponse> getGames() => _gameApi.getGames();
 
   ///Provide a nextPage for [GameResponse] of all games
   Future<GameResponse> getMoreGames(String nextPage) =>
-      _veryGoodGamesApi.getMoreGames(nextPage);
+      _gameApi.getMoreGames(nextPage);
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:game_api/src/models/json_map.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:very_good_games_api/src/models/json_map.dart';
 
 part 'game.g.dart';
 

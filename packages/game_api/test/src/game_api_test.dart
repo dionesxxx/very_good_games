@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:game_api/src/game_api.dart';
 import 'package:test/test.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
 
-class TestVeryGoodGamesApi extends VeryGoodGamesApi {
-  TestVeryGoodGamesApi() : super();
+class TestGameApi extends GameApi {
+  TestGameApi() : super();
 
   @override
   dynamic noSuchMethod(Invocation invocation) {
@@ -14,7 +14,7 @@ class TestVeryGoodGamesApi extends VeryGoodGamesApi {
 void main() {
   group('VeryGoodGamesApi', () {
     test('can be instantiated', () {
-      expect(TestVeryGoodGamesApi.new, returnsNormally);
+      expect(TestGameApi.new, returnsNormally);
     });
   });
 }

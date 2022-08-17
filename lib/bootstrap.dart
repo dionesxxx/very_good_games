@@ -10,9 +10,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
+import 'package:game_api/game_api.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:very_good_games/app/app.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -28,14 +28,14 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap({required VeryGoodGamesApi veryGoodGamesApi}) async {
+Future<void> bootstrap({required GameApi gameApi}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   Bloc.observer = AppBlocObserver();
 
-  final gameRepository = GameRepository(veryGoodGamesApi: veryGoodGamesApi);
+  final gameRepository = GameRepository(gameApi: gameApi);
 
   runZonedGuarded(
     () => runApp(App(gameRepository: gameRepository)),

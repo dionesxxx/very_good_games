@@ -3,10 +3,9 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:game_api/game_api.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:meta/meta.dart';
-import 'package:very_good_games_api/very_good_games_api.dart';
 
 part 'games_event.dart';
 part 'games_state.dart';
