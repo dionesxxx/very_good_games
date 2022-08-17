@@ -4,18 +4,18 @@ on: [pull_request, push]
 
 jobs:
 
-  verify-very_good_games_repository:
+  verify-game_repository:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
     with:
       dart_sdk: "stable"
       coverage_excludes: "*.g.dart"
-      working_directory: "packages/very_good_games_repository"
+      working_directory: "packages/game_repository"
   
-  verify-very_good_remote_games_api:
+  verify-remote_game_api:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       coverage_excludes: "*.g.dart"
-      working_directory: "packages/very_good_remote_games_api"
+      working_directory: "packages/remote_game_api"
       flutter_channel: stable
       flutter_version: 3.0.4
       min_coverage: 1
@@ -33,8 +33,8 @@ jobs:
   build:
     needs:
       [
-        verify-very_good_games_repository,
-        verify-very_good_remote_games_api,
+        verify-game_repository,
+        verify-remote_game_api,
         verify-application,
         verify-semantic-pull-request,
       ]
