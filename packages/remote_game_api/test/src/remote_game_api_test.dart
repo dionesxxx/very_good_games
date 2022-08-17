@@ -12,7 +12,7 @@ class MockResponse extends Mock implements http.Response {}
 class FakeUri extends Fake implements Uri {}
 
 void main() {
-  group('VeryGoodRemoteGamesApi', () {
+  group('RemoteGameApi', () {
     late http.Client httpClient;
 
     setUpAll(() {
