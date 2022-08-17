@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
+import 'package:remote_game_api/constants/constants.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_remote_games_api/constants/constants.dart';
 
 /// Exception thrown when getGames fails.
 class GamesRequestFailure implements Exception {}
@@ -14,9 +14,9 @@ class GamesNotFoundFailure implements Exception {}
 /// {@template very_good_remote_games_api}
 /// A Flutter implementation of the VeryGoodGamesApi that uses a remote http
 /// {@endtemplate}
-class VeryGoodRemoteGamesApi extends VeryGoodGamesApi {
+class RemoteGameApi extends VeryGoodGamesApi {
   /// {@macro very_good_remote_games_api}
-  VeryGoodRemoteGamesApi({http.Client? httpClient})
+  RemoteGameApi({http.Client? httpClient})
       : _httpClient = httpClient ?? http.Client();
 
   static const _baseUrl = 'api.rawg.io';

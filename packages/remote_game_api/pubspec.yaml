@@ -1,5 +1,5 @@
-name: very_good_remote_games_api
-description: A Flutter implementation of the VeryGoodGamesApi that uses a remote http
+name: remote_game_api
+description: A Flutter implementation of the GameApi that uses a remote http
 version: 1.0.0+1
 publish_to: none
 

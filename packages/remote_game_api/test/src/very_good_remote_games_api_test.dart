@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
+import 'package:remote_game_api/remote_games_api.dart';
 import 'package:test/test.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_remote_games_api/very_good_remote_games_api.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
@@ -23,14 +23,14 @@ void main() {
       httpClient = MockHttpClient();
     });
 
-    VeryGoodRemoteGamesApi createSubject() {
-      return VeryGoodRemoteGamesApi(
+    RemoteGameApi createSubject() {
+      return RemoteGameApi(
         httpClient: httpClient,
       );
     }
 
     test('can be instantiated', () {
-      expect(VeryGoodRemoteGamesApi(), isNotNull);
+      expect(RemoteGameApi(), isNotNull);
     });
 
     test('throws GamesRequestFailure on non-200 response', () async {

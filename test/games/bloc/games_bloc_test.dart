@@ -2,9 +2,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:remote_game_api/remote_games_api.dart';
 import 'package:very_good_games/games/bloc/games_bloc.dart';
 import 'package:very_good_games_api/very_good_games_api.dart';
-import 'package:very_good_remote_games_api/very_good_remote_games_api.dart';
 
 class MockGameRepository extends Mock implements GameRepository {}
 
