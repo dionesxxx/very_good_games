@@ -11,6 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:very_good_games/games/view/games_page.dart';
 import 'package:very_good_games/l10n/l10n.dart';
+import 'package:very_good_games/theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key, required this.gameRepository});
@@ -32,12 +33,8 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-        colorScheme: ColorScheme.fromSwatch(
-          accentColor: const Color(0xFF13B9FF),
-        ),
-      ),
+      theme: FlutterGamesTheme.light,
+      darkTheme: FlutterGamesTheme.dark,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
