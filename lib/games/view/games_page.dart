@@ -40,7 +40,10 @@ class _GamesViewState extends State<GamesView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.gamesAppBarTitle),
+        title: Text(
+          l10n.gamesAppBarTitle,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: BlocBuilder<GamesBloc, GamesState>(
         builder: (context, state) {
