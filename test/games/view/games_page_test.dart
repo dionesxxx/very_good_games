@@ -140,7 +140,7 @@ void main() {
       );
     });
 
-    testWidgets('fetches more posts when scrolled to the bottom',
+    testWidgets('fetches more games when scrolled to the bottom',
         (tester) async {
       when(() => gamesBloc.state).thenReturn(
         GamesState(
@@ -163,11 +163,11 @@ void main() {
         gameRepository: gameRepository,
       );
 
-      await tester.drag(find.byType(GamesView), const Offset(0, -500));
+      await tester.drag(find.byType(GamesView), const Offset(0, -2500));
       verify(() => gamesBloc.add(GamesFetched())).called(1);
     });
 
-    testWidgets('does not render bottom loader when post max is reached',
+    testWidgets('does not render bottom loader when game max is reached',
         (tester) async {
       when(() => gamesBloc.state).thenReturn(
         GamesState(
