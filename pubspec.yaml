@@ -10,6 +10,7 @@ environment:
 dependencies:
   bloc: ^8.1.0
   bloc_concurrency: ^0.2.0
+  cached_network_image: ^3.2.1
   equatable: ^2.0.3
   flutter:
     sdk: flutter
@@ -20,6 +21,7 @@ dependencies:
     path: packages/game_api
   game_repository:
     path: packages/game_repository
+  google_fonts: ^3.0.1
   intl: ^0.17.0
   remote_game_api:
     path: packages/remote_game_api
