@@ -19,6 +19,13 @@ jobs:
       flutter_channel: stable
       flutter_version: 3.0.4
       min_coverage: 1
+
+  verify-user_api:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
+    with:
+      dart_sdk: "stable"
+      coverage_excludes: "*.g.dart"
+      working_directory: "packages/user_api"
   
   verify-application:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
@@ -35,6 +42,7 @@ jobs:
       [
         verify-game_repository,
         verify-remote_game_api,
+        verify-user_api,
         verify-application,
         verify-semantic-pull-request,
       ]
