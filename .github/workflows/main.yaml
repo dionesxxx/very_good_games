@@ -7,7 +7,7 @@ jobs:
   verify-game_repository:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
     with:
-      dart_sdk: "stable"
+      dart_sdk: "2.17"
       coverage_excludes: "*.g.dart"
       working_directory: "packages/game_repository"
   
@@ -23,7 +23,7 @@ jobs:
   verify-user_api:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
     with:
-      dart_sdk: "stable"
+      dart_sdk: "2.17"
       coverage_excludes: "*.g.dart"
       working_directory: "packages/user_api"
   
