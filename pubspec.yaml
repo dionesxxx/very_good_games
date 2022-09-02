@@ -11,10 +11,10 @@ dependencies:
   bloc: ^8.1.0
   bloc_concurrency: ^0.2.0
   cached_network_image: ^3.2.1
-  equatable: ^2.0.3
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^8.1.1
   flutter_localizations:
     sdk: flutter
   game_api:
@@ -27,7 +27,7 @@ dependencies:
     path: packages/remote_game_api
 
 dev_dependencies:
-  bloc_test: ^9.0.3
+  bloc_test: ^9.1.0
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
