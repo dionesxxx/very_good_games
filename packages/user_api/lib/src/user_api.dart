@@ -12,6 +12,6 @@ abstract class UserApi {
 
   /// Saves a favorite game.
   ///
-  /// If a [gameId] already exists, it will be replaced.
-  Future<void> saveFavoriteGames(int gameId);
+  /// If a [User] already exists, it will be replaced.
+  Future<void> saveFavoriteGames(User user);
 }
