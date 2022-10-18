@@ -13,5 +13,10 @@
     "failedFetchGames": "Failed to fetch games",
     "@failedFetchGames": {
         "description": "Text shown when an error occur trying fetch games"
+    },
+
+    "favoriteGame": "Favorite",
+    "@favoriteGame": {
+        "description": "Text shown for favorite game button action"
     }
 }

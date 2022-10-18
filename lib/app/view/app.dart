@@ -9,19 +9,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:game_repository/game_repository.dart';
+import 'package:user_repository/user_repository.dart';
 import 'package:very_good_games/games/view/games_page.dart';
 import 'package:very_good_games/l10n/l10n.dart';
 import 'package:very_good_games/theme/theme.dart';
 
 class App extends StatelessWidget {
-  const App({super.key, required this.gameRepository});
+  const App({
+    super.key,
+    required this.gameRepository,
+    required this.userRepository,
+  });
 
   final GameRepository gameRepository;
+  final UserRepository userRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: gameRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<GameRepository>(
+          create: (context) => gameRepository,
+        ),
+        RepositoryProvider<UserRepository>(
+          create: (context) => userRepository,
+        )
+      ],
       child: const AppView(),
     );
   }

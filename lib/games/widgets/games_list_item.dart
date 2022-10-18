@@ -1,12 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:game_api/game_api.dart';
+import 'package:very_good_games/games/models/game_view.dart';
+import 'package:very_good_games/games/widgets/widgets.dart';
 import 'package:very_good_games/theme/theme.dart';
 
 class GamesListItem extends StatelessWidget {
-  const GamesListItem({super.key, required this.game});
+  const GamesListItem({
+    super.key,
+    required this.gameView,
+    this.onToggleFavorited,
+  });
 
-  final Game game;
+  final GameView gameView;
+  final ValueChanged<bool>? onToggleFavorited;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class GamesListItem extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: CachedNetworkImageProvider(
-                      game.backgroundImage,
+                      gameView.game.backgroundImage,
                     ),
                   ),
                 ),
@@ -49,7 +55,7 @@ class GamesListItem extends StatelessWidget {
                   width: 40,
                   child: Center(
                     child: Text(
-                      game.rating.toString(),
+                      gameView.game.rating.toString(),
                       style: const TextStyle(
                         fontSize: 12,
                       ),
@@ -61,13 +67,13 @@ class GamesListItem extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              height: 220,
+              height: 260,
               padding: const EdgeInsets.all(defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    game.name,
+                    gameView.game.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
@@ -77,7 +83,7 @@ class GamesListItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    game.name,
+                    gameView.game.name,
                     style: TextStyle(
                       color: Theme.of(context)
                           .textTheme
@@ -88,7 +94,7 @@ class GamesListItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    game.released,
+                    gameView.game.released,
                     style: TextStyle(
                       color: Theme.of(context)
                           .textTheme
@@ -96,6 +102,11 @@ class GamesListItem extends StatelessWidget {
                           .color!
                           .withOpacity(0.64),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  FavoritedButton(
+                    isFavorited: gameView.isFavorite,
+                    onToggleFavorited: onToggleFavorited,
                   ),
                 ],
               ),

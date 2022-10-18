@@ -5,7 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:game_api/game_api.dart';
 import 'package:game_repository/game_repository.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:user_api/user_api.dart';
+import 'package:user_repository/user_repository.dart';
 import 'package:very_good_games/games/bloc/games_bloc.dart';
+import 'package:very_good_games/games/models/models.dart';
 import 'package:very_good_games/games/view/view.dart';
 import 'package:very_good_games/games/widgets/widgets.dart';
 
@@ -16,6 +19,8 @@ class MockGamesBloc extends MockBloc<GamesEvent, GamesState>
 
 void main() {
   late GameRepository gameRepository;
+  late UserRepository userRepository;
+
   const gameResponse = GameResponse(
     count: 1,
     games: [
@@ -31,19 +36,29 @@ void main() {
     previous: '',
   );
 
+  final gamesView = [
+    GameView(
+      game: gameResponse.games.first,
+    ),
+  ];
+
   group('GamesPage', () {
     setUp(() {
       gameRepository = MockGameRepository();
+      userRepository = MockUserRepository();
       when(() => gameRepository.getGames())
           .thenAnswer((_) async => gameResponse);
       when(() => gameRepository.getMoreGames(any()))
           .thenAnswer((_) async => gameResponse);
+      when(() => userRepository.getUser())
+          .thenAnswer((_) => Stream.value(const User()));
     });
 
     testWidgets('renders GamesView', (tester) async {
       await tester.pumpApp(
         const GamesPage(),
         gameRepository: gameRepository,
+        userRepository: userRepository,
       );
     });
   });
@@ -52,16 +67,19 @@ void main() {
     late GamesBloc gamesBloc;
     setUp(() {
       gameRepository = MockGameRepository();
+      userRepository = MockUserRepository();
       when(() => gameRepository.getGames())
           .thenAnswer((_) async => gameResponse);
       when(() => gameRepository.getMoreGames(any()))
           .thenAnswer((_) async => gameResponse);
+      when(() => userRepository.getUser())
+          .thenAnswer((_) => Stream.value(const User()));
 
       gamesBloc = MockGamesBloc();
       when(() => gamesBloc.state).thenReturn(
         GamesState(
           status: GamesStatus.success,
-          games: [...gameResponse.games],
+          games: [...gamesView],
         ),
       );
 
@@ -131,6 +149,7 @@ void main() {
       await tester.pumpApp(
         buildSubject(),
         gameRepository: gameRepository,
+        userRepository: userRepository,
       );
 
       expect(find.byType(ListView), findsOneWidget);
@@ -147,12 +166,8 @@ void main() {
           status: GamesStatus.success,
           games: List.generate(
             12,
-            (i) => Game(
-              id: i,
-              name: 'Game name',
-              released: '-',
-              backgroundImage: '',
-              rating: 4.44,
+            (i) => GameView(
+              game: gameResponse.games.first,
             ),
           ),
         ),
@@ -161,9 +176,10 @@ void main() {
       await tester.pumpApp(
         buildSubject(),
         gameRepository: gameRepository,
+        userRepository: userRepository,
       );
 
-      await tester.drag(find.byType(GamesView), const Offset(0, -2500));
+      await tester.drag(find.byType(GamesView), const Offset(0, -3000));
       verify(() => gamesBloc.add(GamesFetched())).called(1);
     });
 
@@ -172,7 +188,7 @@ void main() {
       when(() => gamesBloc.state).thenReturn(
         GamesState(
           status: GamesStatus.success,
-          games: gameResponse.games,
+          games: gamesView,
           hasReachedMax: true,
         ),
       );
@@ -181,6 +197,30 @@ void main() {
         gameRepository: gameRepository,
       );
       expect(find.byType(BottomLoader), findsNothing);
+    });
+
+    testWidgets(
+        'adds GamesFavoriteToggle '
+        'to GamesBloc '
+        'when onToggleFavorited is called', (tester) async {
+      await tester.pumpApp(
+        buildSubject(),
+        gameRepository: gameRepository,
+        userRepository: userRepository,
+      );
+
+      final gamesList =
+          tester.widget<GamesListItem>(find.byType(GamesListItem).first);
+      gamesList.onToggleFavorited!(!gamesView.first.isFavorite);
+
+      verify(
+        () => gamesBloc.add(
+          GamesFavoriteToggle(
+            game: gamesView.first,
+            isFavorited: !gamesView.first.isFavorite,
+          ),
+        ),
+      );
     });
   });
 }

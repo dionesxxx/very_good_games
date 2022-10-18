@@ -12,6 +12,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:game_api/game_api.dart';
 import 'package:game_repository/game_repository.dart';
+import 'package:user_api/user_api.dart';
+import 'package:user_repository/user_repository.dart';
 import 'package:very_good_games/app/app.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -28,7 +30,10 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap({required GameApi gameApi}) async {
+Future<void> bootstrap({
+  required GameApi gameApi,
+  required UserApi userApi,
+}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -36,9 +41,15 @@ Future<void> bootstrap({required GameApi gameApi}) async {
   Bloc.observer = AppBlocObserver();
 
   final gameRepository = GameRepository(gameApi: gameApi);
+  final userRepository = UserRepository(userApi: userApi);
 
   runZonedGuarded(
-    () => runApp(App(gameRepository: gameRepository)),
+    () => runApp(
+      App(
+        gameRepository: gameRepository,
+        userRepository: userRepository,
+      ),
+    ),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }

@@ -48,6 +48,7 @@ class LocalStorageUserApi extends UserApi {
 
   @override
   Future<void> saveFavoriteGames(User user) {
+    _streamController.add(user);
     return _setValue(kFavoriteGamesCollectionKey, json.encode(user));
   }
 }

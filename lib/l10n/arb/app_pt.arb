@@ -13,5 +13,10 @@
     "failedFetchGames": "Falha ao carregar games",
     "@failedFetchGames": {
         "description": "Texto de falha exibido ao tentar carregar games"
+    },
+
+    "favoriteGame": "Favorite",
+    "@favoriteGame": {
+        "description": "Texto exibido para botão de favoritar um game"
     }
 }

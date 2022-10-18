@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_repository/game_repository.dart';
+import 'package:user_repository/user_repository.dart';
 import 'package:very_good_games/games/games.dart';
 import 'package:very_good_games/l10n/l10n.dart';
 
@@ -12,7 +13,10 @@ class GamesPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => GamesBloc(
         gameRepository: context.read<GameRepository>(),
-      )..add(GamesFetched()),
+        userRepository: context.read<UserRepository>(),
+      )
+        ..add(GamesFetched())
+        ..add(const GamesFavoitedSubscriptionRequested()),
       child: const GamesView(),
     );
   }
@@ -55,7 +59,17 @@ class _GamesViewState extends State<GamesView> {
                 itemBuilder: (BuildContext context, int index) {
                   return index >= state.games.length
                       ? const BottomLoader()
-                      : GamesListItem(game: state.games[index]);
+                      : GamesListItem(
+                          gameView: state.games[index],
+                          onToggleFavorited: (isFavorited) {
+                            context.read<GamesBloc>().add(
+                                  GamesFavoriteToggle(
+                                    game: state.games[index],
+                                    isFavorited: isFavorited,
+                                  ),
+                                );
+                          },
+                        );
                 },
                 itemCount: state.hasReachedMax
                     ? state.games.length
@@ -80,7 +94,9 @@ class _GamesViewState extends State<GamesView> {
   }
 
   void _onScroll() {
-    if (_isBottom) context.read<GamesBloc>().add(GamesFetched());
+    if (_isBottom) {
+      context.read<GamesBloc>().add(GamesFetched());
+    }
   }
 
   bool get _isBottom {

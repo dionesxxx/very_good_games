@@ -23,8 +23,14 @@ dependencies:
     path: packages/game_repository
   google_fonts: ^3.0.1
   intl: ^0.17.0
+  local_storage_user_api:
+    path: packages/local_storage_user_api
   remote_game_api:
     path: packages/remote_game_api
+  user_api:
+    path: packages/user_api
+  user_repository:
+    path: packages/user_repository
 
 dev_dependencies:
   bloc_test: ^9.1.0
