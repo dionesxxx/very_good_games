@@ -46,7 +46,9 @@ class _GamesViewState extends State<GamesView> {
       appBar: AppBar(
         title: Text(
           l10n.gamesAppBarTitle,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: BlocBuilder<GamesBloc, GamesState>(

@@ -13,11 +13,15 @@ const defaultPadding = 20.0;
 ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(
     primaryColor: kPrimaryColor,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: kContentColorDarkTheme,
     appBarTheme: const AppBarTheme(
       color: kContentColorDarkTheme,
       centerTitle: false,
       elevation: 0,
+      titleTextStyle: TextStyle(
+        color: kContentColorLightTheme,
+        fontSize: 22,
+      ),
     ),
     iconTheme: const IconThemeData(color: kContentColorLightTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
@@ -45,6 +49,10 @@ ThemeData darkThemeData(BuildContext context) {
       color: kContentColorLightTheme,
       centerTitle: false,
       elevation: 0,
+      titleTextStyle: TextStyle(
+        color: kContentColorDarkTheme,
+        fontSize: 22,
+      ),
     ),
     iconTheme: const IconThemeData(color: kContentColorDarkTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)

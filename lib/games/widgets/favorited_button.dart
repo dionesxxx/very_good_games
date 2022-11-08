@@ -55,7 +55,9 @@ class _FavoritedButtonState extends State<FavoritedButton> {
         TextButton.icon(
           style: TextButton.styleFrom(
             splashFactory: NoSplash.splashFactory,
-            foregroundColor: _value ? null : Colors.white,
+            foregroundColor: _value
+                ? null
+                : Theme.of(context).appBarTheme.titleTextStyle?.color,
             padding: const EdgeInsets.fromLTRB(26, 12, 26, 12),
             textStyle: const TextStyle(
               fontSize: 18,
