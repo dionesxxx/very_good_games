@@ -50,6 +50,9 @@ class _GamesViewState extends State<GamesView> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: const [
+          GamesFilterButton(),
+        ],
       ),
       body: BlocBuilder<GamesBloc, GamesState>(
         builder: (context, state) {
@@ -57,25 +60,29 @@ class _GamesViewState extends State<GamesView> {
             case GamesStatus.failure:
               return Center(child: Text(l10n.failedFetchGames));
             case GamesStatus.success:
+              final filteredGames = state.filteredGames.toList();
+
               return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return index >= state.games.length
+                  return index >= filteredGames.length
                       ? const BottomLoader()
                       : GamesListItem(
-                          gameView: state.games[index],
+                          key: ValueKey(filteredGames[index].game),
+                          gameView: filteredGames[index],
                           onToggleFavorited: (isFavorited) {
                             context.read<GamesBloc>().add(
                                   GamesFavoriteToggle(
-                                    game: state.games[index],
+                                    game: filteredGames[index],
                                     isFavorited: isFavorited,
                                   ),
                                 );
                           },
                         );
                 },
-                itemCount: state.hasReachedMax
-                    ? state.games.length
-                    : state.games.length + 1,
+                itemCount:
+                    state.hasReachedMax || state.filter != GameViewFilter.all
+                        ? filteredGames.length
+                        : filteredGames.length + 1,
                 controller: _scrollController,
               );
 

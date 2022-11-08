@@ -22,6 +22,7 @@ ThemeData lightThemeData(BuildContext context) {
         color: kContentColorLightTheme,
         fontSize: 22,
       ),
+      iconTheme: IconThemeData(color: kContentColorLightTheme),
     ),
     iconTheme: const IconThemeData(color: kContentColorLightTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
@@ -53,6 +54,7 @@ ThemeData darkThemeData(BuildContext context) {
         color: kContentColorDarkTheme,
         fontSize: 22,
       ),
+      iconTheme: IconThemeData(color: kContentColorDarkTheme),
     ),
     iconTheme: const IconThemeData(color: kContentColorDarkTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)

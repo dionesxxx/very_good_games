@@ -7,6 +7,7 @@ class GamesState extends Equatable {
     this.status = GamesStatus.initial,
     this.games = const <GameView>[],
     this.favorites = const [],
+    this.filter = GameViewFilter.all,
     this.nextPage = '',
     this.hasReachedMax = false,
   });
@@ -14,13 +15,17 @@ class GamesState extends Equatable {
   final GamesStatus status;
   final List<GameView> games;
   final List<int> favorites;
+  final GameViewFilter filter;
   final String nextPage;
   final bool hasReachedMax;
+
+  Iterable<GameView> get filteredGames => filter.applyAll(games);
 
   GamesState copyWith({
     GamesStatus? status,
     List<GameView>? games,
     List<int>? favorites,
+    GameViewFilter? filter,
     String? nextPage,
     bool? hasReachedMax,
   }) {
@@ -28,6 +33,7 @@ class GamesState extends Equatable {
       status: status ?? this.status,
       games: games ?? this.games,
       favorites: favorites ?? this.favorites,
+      filter: filter ?? this.filter,
       nextPage: nextPage ?? this.nextPage,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
@@ -35,5 +41,5 @@ class GamesState extends Equatable {
 
   @override
   List<Object?> get props =>
-      [status, games, favorites, nextPage, hasReachedMax];
+      [status, games, favorites, filter, nextPage, hasReachedMax];
 }

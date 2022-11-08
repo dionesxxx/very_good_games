@@ -26,3 +26,12 @@ class GamesFavoriteToggle extends GamesEvent {
   @override
   List<Object> get props => [game, isFavorited];
 }
+
+class GamesFilterChanged extends GamesEvent {
+  const GamesFilterChanged(this.filter);
+
+  final GameViewFilter filter;
+
+  @override
+  List<Object> get props => [filter];
+}

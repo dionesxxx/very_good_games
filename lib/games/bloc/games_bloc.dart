@@ -24,6 +24,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
     );
     on<GamesFetched>(_onGameFetched, transformer: droppable());
     on<GamesFavoriteToggle>(_onGameFavoriteToggle);
+    on<GamesFilterChanged>(_onFilterChanged);
   }
 
   final GameRepository _gameRepository;
@@ -113,5 +114,12 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
         ],
       ),
     );
+  }
+
+  void _onFilterChanged(
+    GamesFilterChanged event,
+    Emitter<GamesState> emit,
+  ) {
+    emit(state.copyWith(filter: event.filter));
   }
 }
