@@ -18,5 +18,15 @@
     "favoriteGame": "Favorite",
     "@favoriteGame": {
         "description": "Texto exibido para botão de favoritar um game"
+    },
+
+    "gamesFilterAll": "Todos",
+    "@gamesFilterAll": {
+        "description": "Texto exibido para filtro de todos games"
+    },
+
+    "gamesFilterFavoriteOnly": "Favoritos",
+    "@gamesFilterFavoriteOnly": {
+        "description": "Texto exibido para filtro de todos games favoritos apenas"
     }
 }

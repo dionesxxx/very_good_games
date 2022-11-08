@@ -18,5 +18,16 @@
     "favoriteGame": "Favorite",
     "@favoriteGame": {
         "description": "Text shown for favorite game button action"
+    },
+
+    "gamesFilterAll": "All",
+    "@gamesFilterAll": {
+        "description": "Text shown for favorite filter all action"
+    },
+
+    "gamesFilterFavoriteOnly": "Favorites",
+    "@gamesFilterFavoriteOnly": {
+        "description": "Text shown for favorite filter favorite only action"
     }
+    
 }
