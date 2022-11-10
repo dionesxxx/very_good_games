@@ -34,5 +34,20 @@ void main() {
         );
       });
     });
+
+    group('GamesFilterChanged', () {
+      test('supports values comparison', () {
+        expect(
+          const GamesFilterChanged(GameViewFilter.all),
+          equals(const GamesFilterChanged(GameViewFilter.all)),
+        );
+      });
+      test('props are correct', () {
+        expect(
+          const GamesFilterChanged(GameViewFilter.all).props,
+          equals(<Object>[GameViewFilter.all]),
+        );
+      });
+    });
   });
 }

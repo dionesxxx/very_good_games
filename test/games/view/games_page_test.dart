@@ -134,7 +134,6 @@ void main() {
         );
         await tester.pumpAndSettle();
 
-        expect(find.byType(Center), findsOneWidget);
         expect(
           find.descendant(
             of: find.byType(Center),

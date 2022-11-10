@@ -256,5 +256,21 @@ void main() {
         },
       );
     });
+
+    group('GamesFilterChanged', () {
+      blocTest<GamesBloc, GamesState>(
+        'emits state with favoriteOnly filter',
+        setUp: () => when(() => userRepository.getUser()).thenAnswer(
+          (_) => Stream.value(favoritesGames),
+        ),
+        build: createSubject,
+        act: (bloc) => bloc.add(
+          const GamesFilterChanged(GameViewFilter.favoriteOnly),
+        ),
+        expect: () => const [
+          GamesState(filter: GameViewFilter.favoriteOnly),
+        ],
+      );
+    });
   });
 }

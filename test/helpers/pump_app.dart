@@ -40,7 +40,7 @@ extension PumpApp on WidgetTester {
             GlobalMaterialLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          home: widget,
+          home: Scaffold(body: widget),
         ),
       ),
     );
