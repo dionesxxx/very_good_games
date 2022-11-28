@@ -16,7 +16,7 @@ jobs:
       coverage_excludes: "*.g.dart"
       working_directory: "packages/remote_game_api"
       flutter_channel: stable
-      flutter_version: 3.3.3
+      flutter_version: 3.3.4
       min_coverage: 1
 
   verify-user_api:
@@ -30,7 +30,7 @@ jobs:
     with:
       coverage_excludes: "*.g.dart"
       flutter_channel: stable
-      flutter_version: 3.3.3
+      flutter_version: 3.3.4
 
   verify-semantic-pull-request:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
