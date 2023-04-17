@@ -6,8 +6,8 @@ import 'package:very_good_games/theme/theme.dart';
 
 class GamesListItem extends StatelessWidget {
   const GamesListItem({
-    super.key,
     required this.gameView,
+    super.key,
     this.onToggleFavorited,
   });
 
@@ -87,7 +87,7 @@ class GamesListItem extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context)
                           .textTheme
-                          .bodyText1!
+                          .bodyLarge!
                           .color!
                           .withOpacity(0.64),
                     ),
@@ -98,7 +98,7 @@ class GamesListItem extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(context)
                           .textTheme
-                          .bodyText1!
+                          .bodyLarge!
                           .color!
                           .withOpacity(0.64),
                     ),

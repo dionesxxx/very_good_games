@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  meta: ^1.8.0
   shared_preferences: ^2.0.15
   user_api:
     path: ../user_api
@@ -17,4 +18,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^3.0.1
+  very_good_analysis: ^4.0.0

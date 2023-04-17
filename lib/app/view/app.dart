@@ -16,9 +16,9 @@ import 'package:very_good_games/theme/theme.dart';
 
 class App extends StatelessWidget {
   const App({
-    super.key,
     required this.gameRepository,
     required this.userRepository,
+    super.key,
   });
 
   final GameRepository gameRepository;

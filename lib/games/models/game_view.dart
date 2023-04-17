@@ -19,7 +19,7 @@ extension GameViewFilterX on GameViewFilter {
 }
 
 class GameView extends Equatable {
-  const GameView({this.isFavorite = false, required this.game});
+  const GameView({required this.game, this.isFavorite = false});
 
   final bool isFavorite;
   final Game game;

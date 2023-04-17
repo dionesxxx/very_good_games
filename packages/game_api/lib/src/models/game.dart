@@ -96,9 +96,9 @@ class GameResponse extends Equatable {
   /// {@macro game response}
   const GameResponse({
     required this.count,
+    required this.games,
     this.next,
     this.previous,
-    required this.games,
   });
 
   /// The counter of total games
