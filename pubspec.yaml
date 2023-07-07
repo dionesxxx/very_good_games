@@ -22,7 +22,7 @@ dependencies:
     path: packages/game_repository
   google_fonts: ^4.0.3
   http: ^0.13.5
-  intl: ^0.17.0
+  intl: ^0.18.0
   local_storage_user_api:
     path: packages/local_storage_user_api
   meta: ^1.8.0
